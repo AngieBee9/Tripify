@@ -1,0 +1,92 @@
+/* Omotač + zaglavlje timelinea */
+.timeline-wrap { display:block; }
+.tl-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; }
+.tl-head h2{ margin:0; font-size:1.1rem; color:#3f4c45; }
+
+.legend{ display:flex; gap:10px; flex-wrap:wrap; }
+.legend-item{ display:flex; align-items:center; gap:6px; color:#6b7280; font-size:0.9rem; }
+.legend-item i{ display:inline-block; width:10px; height:10px; border-radius:2px; }
+
+/* Timeline ploha (dinamička visina: --day-start-min, --day-end-min, --px-per-min) */
+.timeline{
+  position: relative;
+  height: calc( (var(--day-end-min) - var(--day-start-min)) * 1px * var(--px-per-min) );
+  border: 1px solid var(--border, #e6f0ea);
+  border-radius: 12px;
+
+  background:
+    linear-gradient(180deg, #fff, #fff),
+    repeating-linear-gradient(
+      180deg,
+      rgba(0,0,0,0.03),
+      rgba(0,0,0,0.03) 1px,
+      transparent 1px,
+      transparent calc(60px * var(--px-per-min))
+    );
+
+  padding-top: 12px;
+  padding-bottom: 16px;
+  padding-left: 60px;   /* prostor za satne oznake + traku */
+  overflow: auto;
+  touch-action: none;   /* omogućava vlastitu DnD logiku na dodiru */
+}
+
+/* Vertikalna traka s lijeve strane (na 40px) */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 40px;
+  width: 1px;
+  background: #d1d5db;
+  pointer-events: none;
+}
+
+/* Satne crte */
+.hour-line{
+  position:absolute; left:40px; right:0;
+  top: calc(var(--line-top-min) * 1px * var(--px-per-min));
+  height:1px; background: transparent;
+  border-top: 1px dashed #eef3f0;
+}
+.hour-label{
+  position:absolute; left:0; top:-6px;
+  font-size: 11px; color: #88968f;
+  background:#fff; padding: 0 4px;
+  width: 38px; text-align: right;
+}
+
+/* Aktivnosti – poravnane uz traku (lijevo) */
+.tl-item{
+  position:absolute;
+  left: 60px;
+  top: calc(var(--item-top-min) * 1px * var(--px-per-min));
+  height: calc(var(--item-height-min) * 1px * var(--px-per-min));
+  min-height: 24px;
+
+  padding:8px 10px;
+  background:#fff;
+  border:1px solid var(--border, #e6f0ea);
+  border-left:6px solid #2e8b57; /* override inline */
+  border-radius:10px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.06);
+
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.tl-item.dragging{ opacity:0.95; cursor: grabbing; box-shadow:0 10px 24px rgba(0,0,0,0.10); }
+.tl-item.done{ opacity:0.7; }
+
+.tl-time{ font-size:11px; color:#6b7280; display:flex; gap:8px; align-items:baseline; }
+.tl-time-preview{ font-style:normal; font-size:11px; color:#1f2937; background:#f3f4f6; padding:0 4px; border-radius:4px; }
+.tl-title{ display:flex; align-items:center; gap:8px; }
+.tl-emoji{ font-size:18px; }
+.tl-sub{ font-size:12px; color:#6b7280; margin-top:2px; }
+
+/* suptilni hint za povlačenje */
+.drag-hint{
+  position:absolute; right:10px; bottom:6px;
+  font-size:10px; color:#94a3b8; opacity:0; transition: opacity .2s;
+}
+.tl-item:hover .drag-hint{ opacity:.9; }

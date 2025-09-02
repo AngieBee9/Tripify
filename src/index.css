@@ -1,0 +1,33 @@
+:root{
+  /* Visina TVOG zelenog headera (prava visina u px) */
+  --header-h: 68px;
+
+  /* Visina globalnih sticky tabova (ako ih nema, ostavi 0px) */
+  --tabs-h: 0px;
+}
+
+/* (opcionalno) ako imaš klasu na body-ju kad su global-tabs prisutni */
+body.with-tabs{
+  --tabs-h: 44px; /* ili stvarna visina tvojih tabova */
+}
+
+/* (opcionalno) prilagodi na mobitelu ako je header niži/viši */
+@media (max-width: 640px){
+  :root{
+    --header-h: 60px; /* po potrebi promijeni */
+  }
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

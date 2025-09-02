@@ -1,0 +1,318 @@
+/* src/components/PackingList.css */
+
+:root {
+  --green: #2e8b57;
+  --green-d: #206c43;
+  --text: #222;
+  --muted: #555;
+  --border: #e6f0ea;
+  --bg: #f7fbf8;
+  --radius: 12px;
+  --shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.packing {
+  padding: 48px 24px 24px; /* veći top padding (48px) */
+  max-width: 980px;
+  margin: 0 auto;
+  color: var(--text);
+  padding-top: calc(var(--header-h, 68px) + 20px); /* gurni ispod sticky headera ako postoji var --header-h */
+}
+
+.packing h1 {
+  margin: 0 0 12px;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.packing > p {
+  margin: 0 0 20px;
+  color: var(--muted);
+}
+
+/* ========== FORM ========== */
+.packing .form {
+  display: grid;
+  gap: 12px;
+  max-width: 640px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.packing .row {
+  display: grid;
+  gap: 12px;
+}
+
+@media (min-width: 520px) {
+  .packing .row.two {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 720px) {
+  .packing .row.three {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* FIX: viši elementi + veći line-height da se repovi slova ne režu */
+.packing input[type="text"],
+.packing input[type="number"],
+.packing select,
+.packing textarea {
+  width: 100%;
+  height: 44px;                 /* ↑ bilo 40px */
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  transition: border-color .15s ease, box-shadow .15s ease;
+  font: inherit;
+  color: var(--text);
+  line-height: 1.4;             /* ↑ dodano */
+}
+
+/* Placeholder stil za <select> */
+.packing select.placeholder {
+  color: #999;
+}
+
+/* Osiguraj da "Klima" i "Godišnje doba" opcije unutar liste budu sive */
+.packing select option[disabled] {
+  color: #999;
+}
+
+.packing textarea {
+  min-height: 80px;
+  padding: 10px 12px;
+  height: auto;
+  resize: vertical;
+}
+
+.packing input::placeholder { color: #999; }
+
+.packing input[type="text"]:focus,
+.packing input[type="number"]:focus,
+.packing select:focus,
+.packing textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(46,139,87,.12);
+}
+
+.packing label.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.packing .hint {
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+/* ========== BUTTONI ========== */
+.packing .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  transition: background .15s ease, box-shadow .15s ease, border-color .15s ease;
+  text-decoration: none;
+  font: inherit;
+}
+.packing .btn:hover {
+  background: var(--bg);
+}
+.packing .btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46,139,87,.12);
+}
+.packing .btn.primary {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+.packing .btn.primary:hover {
+  background: var(--green-d);
+  border-color: var(--green-d);
+}
+.packing .btn.subtle {
+  background: #fff;
+  color: var(--text);
+}
+.packing .btn.danger {
+  border-color: #f1c0c0;
+  color: #a83232;
+  background: #fff;
+}
+.packing .btn.danger:hover {
+  background: #fff3f3;
+  border-color: #e9a6a6;
+}
+
+/* ========== SEPARATOR ========== */
+.packing .split {
+  margin: 24px 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+  border: 0;
+}
+
+/* ========== LIST CARDS ========== */
+.packing .cards {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 720px) {
+  .packing .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.packing .card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  /* default accent */
+  --accent: var(--green);
+}
+
+/* ŠARENA TRAKA UZ LIJEVI RUB */
+.packing .card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6px;
+  background: var(--accent);
+}
+
+/* Header kartice */
+.packing .card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.packing .card strong {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+.packing .card small {
+  color: var(--muted);
+}
+
+.packing .group-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+/* lista bez default bulletsa jer imamo checkboxe */
+.packing .card ul {
+  margin: 10px 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.packing .card li {
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 4px;
+  border-radius: 8px;
+  transition: background .15s ease;
+}
+
+.packing .card li:hover {
+  background: #fafdfb;
+}
+
+/* naziv + qty */
+.packing .card li span {
+  flex: 1;
+}
+
+.packing .card li em {
+  font-style: normal;
+  font-size: 0.9rem;
+  opacity: 0.75;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+/* “done” stanje */
+.packing .card li.done span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.packing .card li.done em {
+  opacity: 0.55;
+}
+
+/* MALA TIPOGRAFIJA ZA LABEL-OVE */
+.packing .label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* POMOĆNE KLASE ZA RAZMAKE */
+.mt-8 { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+
+/* ========== PALETE BOJA PO GRUPI (preko data-atributa) ========== */
+/* Dokumenti, Osnovno, Higijena, Tehnika, Ljekarna */
+.packing .card[data-group="Dokumenti"]       { --accent: #4e7ad1; } /* plava */
+.packing .card[data-group="Osnovno"]         { --accent: #2e8b57; } /* zelena */
+.packing .card[data-group="Higijena"]        { --accent: #8b5cf6; } /* ljubičasta */
+.packing .card[data-group="Tehnika"]         { --accent: #0ea5e9; } /* cijan */
+.packing .card[data-group="Ljekarna"]        { --accent: #d97706; } /* jantar */
+
+/* Sezonsko/klimatsko */
+.packing .card[data-group="Ljeto"]           { --accent: #f59e0b; } /* toplo žuta */
+.packing .card[data-group="Zima"]            { --accent: #60a5fa; } /* hladna plava */
+.packing .card[data-group="Tropska klima"]   { --accent: #10b981; } /* teal */
+.packing .card[data-group="Pustinja"]        { --accent: #eab308; } /* zlatna */
+.packing .card[data-group="Hladna klima"]    { --accent: #3b82f6; } /* plava */
+
+/* Aktivnosti */
+.packing .card[data-group="Djeca"]           { --accent: #ef4444; } /* crvena */
+.packing .card[data-group="Plaža"]           { --accent: #22c55e; } /* zelena svjetlija */
+.packing .card[data-group="Planinarenje"]    { --accent: #16a34a; } /* šumsko zelena */
+.packing .card[data-group="Grad"]            { --accent: #64748b; } /* siva */
+.packing .card[data-group="Skijanje"]        { --accent: #3f83f8; } /* snježna plava */
+.packing .card[data-group="Ronjenje"]        { --accent: #0ea5e9; } /* morski cijan */
+.packing .card[data-group="Poslovno"]        { --accent: #a855f7; } /* ljubičasta */
+
+/* Custom grupe (korisničke) */
+.packing .card[data-group="Moje stavke"]     { --accent: #475569; } /* slate */

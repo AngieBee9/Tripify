@@ -1,0 +1,578 @@
+:root {
+  --green: #2e8b57;
+  --green-d: #206c43;
+  --text: #222;
+  --muted: #555;
+  --gray: #f7fbf8;
+  --header-h: 68px;
+  --radius: 12px;
+  --hero-img: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80");
+  --border: #e6f0ea;
+  /* NOVO: omjer za velike slike na detalju */
+  --detail-ratio: 16/9;
+  /* NOVO: ciljna širina kartice na listama */
+  --card-w: 320px; /* po želji 300–360px */
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: #fff;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* HEADER */
+header.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--header-h);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  color: #fff;
+  transition: background 0.25s, box-shadow 0.25s, backdrop-filter 0.25s;
+}
+header.site-header.glass {
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+}
+header.site-header.solid {
+  background: linear-gradient(to bottom, var(--green), var(--green-d));
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* NAV: Tripify + linkovi ODMAH jedan do drugog */
+nav {
+  display: flex;
+  justify-content: flex-start; /* brand i ul stoje jedan do drugog */
+  align-items: center;
+  gap: 0;                      /* ⬅ bez dodatnog razmaka između branda i ul */
+  width: 100%;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;  /* razmak logo–tekst */
+  color: #fff;
+  font-weight: 700;
+}
+.brand-logo {
+  height: 28px;
+}
+nav ul {
+  display: flex;
+  gap: 1rem;     /* razmak između linkova */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  margin-left: 0; /* ⬅ makni razmak između Tripify i prve stavke */
+}
+nav a {
+  padding: 0.4rem 0.25rem;
+  font-weight: 600;
+  position: relative;
+  color: #fff;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* GLOBAL TABS */
+.global-tabs {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 35;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e9f3ee;
+}
+.global-tabs .inner {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+}
+.tab {
+  background: #e9f4ee;
+  border: 1px solid #d6efe2;
+  color: #144;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.tab.active {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
+/* --- SIGURAN RAZMAK OD HEADERA I TABOVA --- */
+
+/* 1) uvijek oslobodi prostor za fiksni header */
+main {
+  padding-top: calc(var(--header-h) + 12px);
+}
+
+/* 2) pusti dodatni razmak odmah ispod sticky tabova */
+.global-tabs {
+  margin-bottom: 8px;
+}
+
+/* 3) ako je prvi element ispod tabova neki wrapper, gurni ga dolje */
+.global-tabs + main,
+.global-tabs + .container,
+.global-tabs + .page,
+.global-tabs + .content {
+  margin-top: 56px; /* možeš povećati na 60–64px ako još "grize" */
+}
+
+/* 4) fallback – bilo što odmah ispod tabova (osim headera) */
+.global-tabs + *:not(header) {
+  margin-top: 56px;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 88vh;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.35)
+    ),
+    var(--hero-img);
+  background-size: cover;
+  background-position: center;
+  padding-top: var(--header-h);
+}
+.hero .overlay {
+  width: 100%;
+  padding: 5rem 1rem 4rem;
+}
+.hero .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.15;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+.hero p {
+  margin: 0.9rem auto 0;
+  max-width: 740px;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  opacity: 0.95;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+}
+.hero-cta {
+  margin-top: 1.4rem;
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.btn.ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+}
+.btn.secondary {
+  background: #e9f4ee;
+  color: #144;
+  border: 1px solid #d6efe2;
+}
+
+.title {
+  font-size: clamp(1.4rem, 3.4vw, 2rem);
+  color: var(--green);
+  text-align: center;
+  margin: 2rem 0 1rem;
+}
+.banner {
+  background: var(--gray);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+}
+
+/* GRID ZA LISTE — UNIFORMNA ŠIRINA KARTICA */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+
+  /* NOVO: centriraj sadržaj i kartice kad ih je malo */
+  justify-content: center; /* centriraj grid kolone kad ih je malo */
+  justify-items: center;   /* centriraj svaki grid item u svojoj ćeliji */
+}
+
+/* KARTICA — ograniči širinu, centriraj, slika 16/9 */
+.card {
+  border: 1px solid #eee;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+
+  /* NOVO: uniformna širina kartice */
+  width: 100%;
+  max-width: var(--card-w);
+  margin-inline: auto;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+.card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+.card .pad {
+  padding: 0.75rem 1rem;
+}
+.muted {
+  color: #444;
+  font-size: 0.98rem;
+}
+/* -- BOLJA ČITLJIVOST CIJENE/CTA NA KARTICAMA -- */
+.price-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.4rem;
+  font-weight: 700;          /* malo jače */
+  color: #111;               /* tamni tekst = kontrast */
+  line-height: 1.2;
+}
+
+/* ako unutar price-line imaš gumb/link, učini ga primarnim */
+.price-line .btn,
+.price-line a.btn {
+  background: var(--green);
+  border: none;
+  color: #fff !important;
+  padding: 0.45rem 0.7rem;
+  border-radius: 10px;
+}
+.price-line .btn:hover,
+.price-line a.btn:hover {
+  background: var(--green-d);
+}
+.badges {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #e9f4ee;
+  border: 1px solid #d6efe2;
+  color: #144;
+  font-size: 0.8rem;
+}
+
+/* na vrlo malim ekranima dopusti kartici da zauzme punu širinu */
+@media (max-width: 400px){
+  :root { --card-w: 100%; }
+}
+
+/* DETAILS */
+.detail-wrap {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.25rem;
+}
+@media (max-width: 900px) {
+  .detail-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* UNIFORMNE SLIKE NA DETALJ STRANICI */
+.hero-media{
+  position: relative;
+  aspect-ratio: var(--detail-ratio);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #f3f6f5;
+}
+.hero-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* thumbovi – isti omjer kao velika slika (16/9) */
+.thumbs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+.thumbs img {
+  width: 96px;
+  aspect-ratio: 16/9;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.thumbs img.active {
+  border-color: var(--green);
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+.panel h3 {
+  margin: 0.1rem 0 0.6rem;
+  font-size: 1.1rem;
+  color: var(--green);
+}
+.list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.list li {
+  margin: 0.25rem 0;
+}
+
+.accordion-item {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  background: #fff;
+}
+.accordion-head {
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background: #f9fbfa;
+}
+.accordion-body {
+  padding: 0 1rem 1rem;
+  display: none;
+}
+.accordion-item.open .accordion-body {
+  display: block;
+}
+
+.map-embed {
+  border: 0;
+  width: 100%;
+  height: 260px;
+  border-radius: 10px;
+}
+
+/* CONTACT FORM (uređenije) */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 720px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.field label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #133;
+}
+.input,
+select,
+textarea {
+  padding: 0.65rem 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  font: inherit;
+}
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* FOOTER */
+footer {
+  background: var(--green);
+  color: #fff;
+  margin-top: 2rem;
+  padding: 1.25rem 0;
+}
+footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+footer a {
+  color: #fff;
+  opacity: 0.9;
+}
+footer a:hover {
+  opacity: 1;
+}
+
+/* FADE */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.7s ease forwards;
+  animation-delay: var(--delay, 0s);
+}
+/* --- FORCE hover animacije za .card --- */
+.card {
+  transform: translateY(0) scale(1);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  will-change: transform, box-shadow;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02) !important;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* --- RESPONSIVE PRILAGODBE --- */
+
+/* TABLETI (max 900px) */
+@media (max-width: 900px) {
+  nav ul {
+    gap: 0.6rem;
+  }
+
+  .hero {
+    min-height: 70vh;
+    padding-top: var(--header-h);
+  }
+
+  .detail-wrap {
+    grid-template-columns: 1fr; /* sve u jedan stupac */
+  }
+}
+
+/* MOBITELI (max 720px) */
+@media (max-width: 720px) {
+  nav ul {
+    display: none; /* skrivamo glavnu navigaciju – kasnije možeš dodati hamburger */
+  }
+
+  .hero .overlay {
+    padding: 3.5rem 1rem 3rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  .hero p {
+    font-size: clamp(0.95rem, 4.5vw, 1.1rem);
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr; /* forma u jedan stupac */
+  }
+
+  footer .container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* VRLO MALI EKRANI (max 480px) */
+@media (max-width: 480px) {
+  .global-tabs .inner {
+    flex-wrap: wrap; /* tabovi u više redova */
+  }
+
+  .tab {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .card {
+    max-width: 100%; /* kartica cijelom širinom */
+  }
+
+  .hero .overlay {
+    padding: 2.5rem 1rem 2rem;
+  }
+}
