@@ -1,79 +1,101 @@
 // src/App.js
 import "./App.css";
+import { useEffect } from "react";
+
 import Home from "./components/Home";
 import Header from "./components/Header";
-import ListPage from "./components/ListPage";
-import DetailPage from "./components/DetailPage";
 import NotFound from "./components/NotFound";
 import BookingFlow from "./components/BookingFlow";
 import ContactPage from "./components/ContactPage";
-import DataService from "./services/DataServices"; // tvoja datoteka s podacima
 import { useHashRoute } from "./services/RouterServices";
-
-// ⬇️ Postojeće
 import PackingList from "./components/PackingList";
 import ItineraryPlanner from "./components/ItineraryPlanner";
-
-// ⬇️ NOVO
 import ResponsibleTravelTips from "./components/ResponsibleTravelTips";
 import EtiquettePage from "./components/EtiquettePage";
-import Gallery from "./pages/Gallery"; // ⬅️ NOVO
+import Gallery from "./pages/Gallery";
+import Prijava from "./components/Prijava";
+import Registracija from "./components/Registracija";
+import ProfilePage from "./pages/ProfilePage";
 
-function App() {
+
+// Liste iz baze
+import DestinationsList from "./components/DestinationsList";
+import ToursList from "./components/ToursList";
+
+// Detalji iz baze (odvojene komponente)
+import DestinationDetailRoute from "./components/DestinationDetailRoute";
+import TourDetailRoute from "./components/TourDetailRoute";
+
+export default function App() {
   const [route] = useHashRoute();
 
+  // Pamćenje "odakle dolazimo" kad idemo na detalj
+  useEffect(() => {
+    function rememberOrigin(e) {
+      const a = e.target?.closest?.('a[href^="#/ture/"], a[href^="#/destinacije/"]');
+      if (!a) return;
+
+      const fromPonuda = window.location.hash.startsWith("#/ponuda");
+      const nextIsTour = a.getAttribute("href").startsWith("#/ture/");
+
+      if (fromPonuda) {
+        const qs = new URLSearchParams(window.location.hash.split("?")[1] || "");
+        if (!qs.get("t")) qs.set("t", nextIsTour ? "ture" : "dest");
+        sessionStorage.setItem("tripify_prev", `#/ponuda?${qs.toString()}`);
+      } else {
+        sessionStorage.setItem("tripify_prev", window.location.hash || "#/");
+      }
+    }
+
+    document.addEventListener("click", rememberOrigin);
+    return () => document.removeEventListener("click", rememberOrigin);
+  }, []);
+
   return (
-    <div>
+    <div className="app-shell">
       <Header route={route} />
 
-      {route.name === "home" && <Home />}
+      {/* Sve stranice unutar app-content da footer padne na dno */}
+      <div className="app-content">
+        {route.name === "home" && <Home />}
 
-      {route.name === "destList" && <ListPage type="dest" />}
+        {/* LISTE */}
+        {route.name === "destList" && <DestinationsList />}
+        {route.name === "tourList" && <ToursList />}
 
-      {route.name === "tourList" && <ListPage type="ture" />}
+        {/* DETALJI */}
+        {route.name === "destDetail" && <DestinationDetailRoute slug={route.slug} />}
+        {route.name === "tourDetail" && <TourDetailRoute slug={route.slug} />}
 
-      {route.name === "destDetail" &&
-        (function () {
-          const item = DataService.DESTINACIJE.find((d) => d.slug === route.slug);
-          return item ? (
-            <DetailPage item={item} backTo="#/destinacije" tip="dest" />
-          ) : (
-            <NotFound />
-          );
-        })()}
+        {route.name === "booking" && (
+          <BookingFlow tip={route.tip} slug={route.slug} />
+        )}
 
-      {route.name === "tourDetail" &&
-        (function () {
-          const item = DataService.TURE.find((t) => t.slug === route.slug);
-          return item ? (
-            <DetailPage item={item} backTo="#/ture" tip="ture" />
-          ) : (
-            <NotFound />
-          );
-        })()}
+        {route.name === "contact" && <ContactPage />}
 
-      {route.name === "booking" && (
-        <BookingFlow tip={route.tip} slug={route.slug} />
-      )}
+        {/* Packing lista */}
+        {route.name === "packing" && <PackingList />}
 
-      {route.name === "contact" && <ContactPage />}
+        {/* Planer putovanja */}
+        {route.name === "planer" && <ItineraryPlanner />}
 
-      {/* Packing lista */}
-      {route.name === "packing" && <PackingList />}
+        {route.name === "prijava" && <Prijava />}
+        {route.name === "registracija" && <Registracija />}
 
-      {/* Planer putovanja */}
-      {route.name === "planer" && <ItineraryPlanner />}
+        {/* Galerija */}
+        {route.name === "gallery" && <Gallery />}
 
-      {/* NOVO: Galerija */}
-      {route.name === "gallery" && <Gallery />}
+        {/* Savjeti za odgovorno putovanje */}
+        {route.name === "tips" && <ResponsibleTravelTips />}
 
-      {/* Savjeti za odgovorno putovanje */}
-      {route.name === "tips" && <ResponsibleTravelTips />}
+        {/* Lokalni običaji & etiketa */}
+        {route.name === "etiketa" && <EtiquettePage />}
 
-      {/* Lokalni običaji & etiketa */}
-      {route.name === "etiketa" && <EtiquettePage />}
-
-      {route.name === "notfound" && <NotFound />}
+        {route.name === "notfound" && <NotFound />}
+        
+        {/* Korisnički profil */}
+        {route.name === "profile" && <ProfilePage />}
+      </div>
 
       <footer>
         <div className="container">
@@ -84,12 +106,10 @@ function App() {
             <a href="#/packing">Pakirna lista</a>
             <a href="#/planer">Planer</a>
             <a href="#/kontakt">Kontakt</a>
-            <a href="#/galerija">Galerija</a> {/* ⬅️ možeš ostaviti ili maknuti */}
+            <a href="#/galerija">Galerija</a>
           </div>
         </div>
       </footer>
     </div>
   );
 }
-
-export default App;

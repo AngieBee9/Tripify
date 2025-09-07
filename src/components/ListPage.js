@@ -1,35 +1,42 @@
-import React, { useMemo, useState } from "react";
-import DataService from "../services/DataServices";
-import Filters from "./Filters";
-import Card from "./Card";
-import GlobalTabs from "./GlobalsTabs";
+// src/components/ListPage.jsx
+import useDestinations from "../hooks/useDestinations";
+import useTours from "../hooks/useTours";
 
-const ListPage = ({ type }) => {
-  const [q, setQ] = useState({});
-  const list = type === "dest" ? DataService.DESTINACIJE : DataService.TURE;
-  const filtered = useMemo(() => DataService.applyFilters(list, q), [list, q]);
+function imageFallback(e) {
+  e.currentTarget.onerror = null;
+  e.currentTarget.src =
+    "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=70";
+}
+
+export default function ListPage({ type }) {
+  const isDest = type === "dest";
+  const { data, loading, error } = isDest ? useDestinations() : useTours();
+
+  if (loading) return <p>Učitavanje...</p>;
+  if (error) return <p>Greška: {String(error)}</p>;
+  if (!data.length) return <p>Nema stavki za prikaz.</p>;
+
   return (
-    <React.Fragment>
-      <GlobalTabs active={type === "dest" ? "dest" : "ture"} />
-      <main className="container" style={{ paddingTop: "1rem" }}>
-        <Filters q={q} setQ={setQ} dataForTags={list} />
-        <div className="grid">
-          {filtered.map(function (item, i) {
-            return (
-              <Card
-                key={item.slug}
-                item={item}
-                href={
-                  (type === "dest" ? "#/destinacije/" : "#/ture/") + item.slug
-                }
-                idx={i}
-              />
-            );
-          })}
-        </div>
-      </main>
-    </React.Fragment>
+    <main className="page">
+      <h1>{isDest ? "Destinacije" : "Ture"}</h1>
+      <div className="grid">
+        {data.map((item) => (
+          <article key={item.slug} className="card">
+            <img src={item.slika} alt={item.naziv} onError={imageFallback} />
+            <h3>{item.naziv}</h3>
+            <p>{item.opis}</p>
+            <p>
+              <strong>Od:</strong> {item.price} € · {item.days} dana · {item.kontinent}
+            </p>
+            <a
+              className="btn"
+              href={isDest ? `#/destinacije/${item.slug}` : `#/ture/${item.slug}`}
+            >
+              Detalji
+            </a>
+          </article>
+        ))}
+      </div>
+    </main>
   );
-};
-
-export default ListPage;
+}

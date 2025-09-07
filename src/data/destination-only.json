@@ -1,0 +1,219 @@
+{
+  "kostarika": {
+    "slug": "kostarika",
+    "naziv": "Kostarika",
+    "opis": "Ekološke ture 🌿",
+    "opisDug": "Kostarika je pionir ekoturizma s više od četvrtine teritorija pod zaštitom. Idealna je za ljubitelje prašuma, vulkana i tihe obale Pacifika.",
+    "zanimljivosti": [
+      "Više od 5% svjetske biodiverzitetne raznolikosti.",
+      "Poznata po 'pura vida' životnom stilu.",
+      "Topli izvori Arenal i oblaci Monteverde."
+    ],
+    "slika": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi289zcRW1_mjzw_VYJ2-8Wx6oR6DIvnOvcyhET5ELOk5WiPs9XR34j6mClCP2BNUP3LwIyLXDA0uPlxYHIWS4OELk_wXiSE1aUz3rHAL29SBZC8N15OVy7tfhrZMfhLRm6xYmKoYeX6XE/s1600/odmor-kostarika-putovanje-more.jpg",
+    "price": 1290,
+    "days": 7,
+    "kontinent": "Srednja Amerika",
+    "tags": ["Popularno", "Priroda", "Održivo"],
+    "includes": ["Smještaj 6 noći", "Transferi", "2 izleta s vodičem"],
+    "itinerary": [
+      { "day": 1, "title": "Dolazak u San José", "text": "Transfer do hotela i slobodno vrijeme." },
+      { "day": 2, "title": "Arenal & topli izvori", "text": "Obilazak parka, večernje kupanje." }
+    ],
+    "gallery": [
+      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=70",
+      "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=1200&q=70"
+    ],
+    "mapQuery": "Costa Rica"
+  },
+  "skotska": {
+    "slug": "skotska",
+    "naziv": "Škotska",
+    "opis": "Putovanje vlakom 🏞️",
+    "opisDug": "Škotska nudi dramatične krajolike, dvorce i bogatu tradiciju. Putovanje vlakom pruža sporiji, romantičan način istraživanja Highlands-a.",
+    "zanimljivosti": [
+      "Edinburgh je UNESCO grad književnosti.",
+      "Jacobite parna lokomotiva prelazi slavni Glenfinnan viadukt.",
+      "Destilerije viskija diljem zemlje."
+    ],
+    "slika": "https://www.gekko-potovanja.si/wp-content/uploads/2020/04/scotland-540119_1920.jpg",
+    "price": 890,
+    "days": 5,
+    "kontinent": "Europa",
+    "tags": ["Vlak", "Povijest"],
+    "includes": ["Vlak karte", "2 ture"],
+    "itinerary": [{ "day": 1, "title": "Edinburgh", "text": "Stari grad i dvorac." }],
+    "gallery": [
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1471623432079-b009d30b6729?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1520975898376-6c2c1a2fd4b3?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Edinburgh"
+  },
+  "madagaskar": {
+    "slug": "madagaskar",
+    "naziv": "Madagaskar",
+    "opis": "Očuvanje prirode 🏝️",
+    "opisDug": "Otoku endema: od lemura do baobaba. Putovanja su avanturistička, ali nagrada je netaknuta priroda.",
+    "zanimljivosti": [
+      "90% biljnih vrsta je endemsko.",
+      "Avenija baobaba je ikonična ruta.",
+      "Nacionalni park Andasibe – dom indri lemura."
+    ],
+    "slika": "https://uploads.publishwall.si/publishwall_new/walls/100000/129812/2023/08/04/64cd282ee788f.webp",
+    "price": 1490,
+    "days": 9,
+    "kontinent": "Afrika",
+    "tags": ["Egzotika"],
+    "includes": ["Smještaj", "Aktivnosti"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1531190560920-184c5a72e22c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1560184897-67f4f22d0bbf?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1518432031352-3e6e2e3a8ad8?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Madagascar"
+  },
+  "nepal": {
+    "slug": "nepal",
+    "naziv": "Nepal",
+    "opis": "Planinarenje s lokalnim vodičima 🗻",
+    "opisDug": "Među najvišim vrhovima svijeta, Nepal je dom Himalaje. Autentična sela i staze nude jedinstveno iskustvo.",
+    "zanimljivosti": [
+      "Gautama Buddha rođen je u Lumbiniju.",
+      "Kathmandu dolina obiluje hramovima.",
+      "Trekking rute: Annapurna, Everest Base Camp."
+    ],
+    "slika": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkgYlZYL88mmmJBMzFRuJ04kbBYHp-dsybWQ&s",
+    "price": 1150,
+    "days": 8,
+    "kontinent": "Azija",
+    "tags": ["Planine"],
+    "includes": ["Trek vodič", "Dozvole"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1509644851169-2acc08aa25b2?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Kathmandu"
+  },
+  "bali": {
+    "slug": "bali",
+    "naziv": "Bali",
+    "opis": "Kultura i vulkani 🌋",
+    "opisDug": "Otoku božanstava, riznica hramova, terasa riže i surf valova. Idealno za wellness i slow travel.",
+    "zanimljivosti": [
+      "Hram Tanah Lot na stijeni u moru.",
+      "Terasaste rižine poljane Tegallalang.",
+      "Tradicionalne plesne predstave u Ubudu."
+    ],
+    "slika": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+    "price": 980,
+    "days": 6,
+    "kontinent": "Azija",
+    "tags": ["Wellness", "Kultura"],
+    "includes": ["Smještaj", "Aktivnosti"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1546484959-f9a53db89c37?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1518544801976-3e188948ac00?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1505764706515-aa95265c5abc?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Bali"
+  },
+  "cinque-terre": {
+    "slug": "cinque-terre",
+    "naziv": "Cinque Terre",
+    "opis": "Talijanska obala i vino 🍷",
+    "opisDug": "Pet šarenih sela na liticama iznad Ligurskog mora povezanih stazama i vlakom.",
+    "zanimljivosti": [
+      "Staza Sentiero Azzurro povezuje sela.",
+      "Poznati pesto Genovese i bijela vina.",
+      "UNESCO zaštićena područja."
+    ],
+    "slika": "https://www.svjetskiputnik.hr/wp-content/uploads/italija-cinque-terre-480x430-1.jpg",
+    "price": 620,
+    "days": 4,
+    "kontinent": "Europa",
+    "tags": ["Obala"],
+    "includes": ["Brodica", "Degustacija"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1491557345352-5929e343eb89?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Cinque Terre"
+  },
+  "patagonija": {
+    "slug": "patagonija",
+    "naziv": "Patagonija",
+    "opis": "Ledeni krajolici i planine",
+    "opisDug": "Divlja regija Argentine i Čilea s glečerima, vjetrovima i legendarnim stazama.",
+    "zanimljivosti": [
+      "Perito Moreno – glečer koji napreduje.",
+      "Torres del Paine – simbol Patagonije.",
+      "Vjetar je gotovo stalno prisutan."
+    ],
+    "slika": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRcktpJz74LRkQ_gS7PlKlCrvhrdTKJv2C2g&s",
+    "price": 1890,
+    "days": 10,
+    "kontinent": "Južna Amerika",
+    "tags": ["Avantura", "Hladno"],
+    "includes": ["Trek", "Lokalni vodič"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1500048993953-d23a436266cf?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1526400423593-6c5b0bd4b9a5?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1544989164-31dc3c645987?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Patagonia"
+  },
+  "santorini": {
+    "slug": "santorini",
+    "naziv": "Santorini",
+    "opis": "Romantične ture i zalasci sunca 🌅",
+    "opisDug": "Kikladski dragulj s bijelim kućama i plavim kupolama, spektakularni zalasci u Oii.",
+    "zanimljivosti": [
+      "Nastao na rubu kaldere.",
+      "Vina od sorte Assyrtiko.",
+      "Crna i crvena plaža."
+    ],
+    "slika": "https://chilitours.hr/upload/santorini_ljetovanje_chilitours_1ngLTm2C8w.jpg",
+    "price": 740,
+    "days": 5,
+    "kontinent": "Europa",
+    "tags": ["Za parove"],
+    "includes": ["Hotel", "Vinska tura"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1504270997636-07ddfbd48945?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1500739864400-449b6e5dd268?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Santorini"
+  },
+  "island": {
+    "slug": "island",
+    "naziv": "Island",
+    "opis": "Aurora borealis i ledene špilje",
+    "opisDug": "Zemlja vatre i leda: gejziri, vodopadi i vulkani na dohvat ruke, Ring Road izlet.",
+    "zanimljivosti": [
+      "Blue Lagoon i Golden Circle.",
+      "Aurora zimi, ponoćno sunce ljeti.",
+      "Sigurna i dobro označena cestovna mreža."
+    ],
+    "slika": "https://images.unsplash.com/photo-1500048993953-d23a436266cf?auto=format&fit=crop&w=800&q=80",
+    "price": 1320,
+    "days": 7,
+    "kontinent": "Europa",
+    "tags": ["Priroda", "Nordijsko"],
+    "includes": ["Najam auta", "Itinerar"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1445264618000-f1e069c592e8?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Iceland"
+  }
+}

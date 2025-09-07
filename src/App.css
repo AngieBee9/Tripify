@@ -208,7 +208,7 @@ main {
 }
 .btn {
   background: var(--green);
-  color: #fff;
+  color: #0b0b0b;
   border: none;
   padding: 0.7rem 1rem;
   border-radius: 10px;
@@ -576,3 +576,287 @@ footer a:hover {
     padding: 2.5rem 1rem 2rem;
   }
 }
+
+/* === AUTH (Prijava / Registracija) === */
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-actions {
+  margin-left: auto;           /* gura na desni rub */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn.small {
+  padding: 6px 10px;
+  font-size: 0.92rem;
+}
+
+.btn.primary {
+  background: var(--green);
+  color: #fff;
+  border: 1px solid var(--green-d);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.65);
+  backdrop-filter: blur(2px);
+}
+
+/* opcionalno – smanji na vrlo uskim ekranima */
+@media (max-width: 420px) {
+  .auth-actions .btn.small { padding: 6px 8px; font-size: 0.85rem; }
+  .brand-text { display: none; } /* po želji, skriva tekst pored loga */
+}
+
+/* === AUTH UI dodatci === */
+.header-row { display: flex; align-items: center; gap: 12px; }
+.auth-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.btn.small { padding: 6px 10px; font-size: 0.92rem; }
+.btn.primary { background: var(--green); color: #fff; border: 1px solid var(--green-d); }
+.btn.ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.65); backdrop-filter: blur(2px); }
+
+/* Alert poruke na formama */
+.alert { margin: 12px 0; padding: 10px 12px; border-radius: 8px; border: 1px solid transparent; font-weight: 600; }
+.alert.ok  { background: #e8f7ee; border-color: #bfe9cf; color: #145a32; }
+.alert.err { background: #fdecea; border-color: #f5c6c3; color: #8a1c1c; }
+
+/* --- HEADER: gurni auth skroz desno i odvoji od navigacije --- */
+.site-header .header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* prebije globalni nav { width:100% } samo u headeru */
+.site-header .nav-inline {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: auto;         /* ⬅︎ važno: više nije 100% */
+  flex: 0 1 auto;
+}
+
+/* blok s Prijava/Registracija ili Odjava */
+.site-header .auth-actions {
+  margin-left: auto;   /* ⬅︎ gurne skroz desno */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 14px;  /* vizualni razmak od 'Kontakt' */
+  border-left: 1px solid rgba(255,255,255,0.35); /* suptilan razdjelnik */
+}
+
+/* malo više “zraka” oko zadnjeg linka u nav-u (npr. Kontakt) */
+.site-header .nav-inline a:last-of-type {
+  margin-right: 6px;
+}
+
+/* (ako želiš finiji razmak na tamnoj pozadini) */
+header.site-header.solid .auth-actions {
+  border-left-color: rgba(255,255,255,0.45);
+}
+header.site-header.glass .auth-actions {
+  border-left-color: rgba(255,255,255,0.35);
+}
+/* === AUTH hover/focus stanja – da se tekst jasno vidi === */
+.site-header .auth-actions .btn {
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ghost gumb: na hover prebaci na bijelu pozadinu i tamno/zelenu tipografiju */
+.site-header .auth-actions .btn.ghost:hover,
+.site-header .auth-actions .btn.ghost:focus-visible {
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--green, #2e8b57) !important;
+  border-color: transparent;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  text-decoration: none;
+}
+
+/* Primary gumb: malo potamni pozadinu */
+.site-header .auth-actions .btn.primary:hover,
+.site-header .auth-actions .btn.primary:focus-visible {
+  background: var(--green-d, #206c43);
+  color: #fff;
+}
+
+/* Dodatno: osiguraj dobar kontrast kad je header staklast/proziran */
+header.site-header:not(.solid) .auth-actions .btn.ghost {
+  /* suptilna tamna podloga da se tekst vidi i preko svijetle hero slike */
+  background: rgba(0, 0, 0, 0.18);
+  border-color: rgba(255,255,255,0.45);
+}
+header.site-header:not(.solid) .auth-actions .btn.ghost:hover,
+header.site-header:not(.solid) .auth-actions .btn.ghost:focus-visible {
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--green, #2e8b57) !important;
+}
+
+/* Sticky footer layout */
+html, body, #root { height: 100%; }
+body { margin: 0; }
+
+.app-shell {
+  min-height: 100svh;          /* stabilnije od 100vh na mobilnim uređajima */
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1 0 auto;              /* gura footer dolje */
+}
+
+footer {
+  margin-top: auto;            /* osiguraj da footer sjedi na dnu */
+  border-top: 1px solid rgba(0,0,0,.08); /* opcionalno, radi izgleda */
+}
+
+/* Gumb visok kao .input – koristi iste paddinge i radius kao inputi */
+.btn--match-input {
+  padding: 0.65rem 0.7rem !important; /* isto kao .input */
+  border-radius: 8px !important;      /* isto kao .input */
+  min-height: 0 !important;
+  height: auto !important;
+  line-height: normal !important;      /* izbjegne dodatno rastezanje */
+  /* ako .btn ima veći border ili ga nema, ovo osigurava jednaki "box" kao input */
+  border: 1px solid transparent;       /* po potrebi promijeni u #ddd da bude baš identično */
+}
+
+/* za gumb Kreiraj račun */
+.form-grid button[type="submit"] { margin-top: 8px; }
+
+
+/* ===== Profil (lijepi, čisti layout) ===== */
+.profile-hero {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.profile-hero .avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #f1f5f9, #e2e8f0);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #334155;
+  border: 1px solid #e5e7eb;
+}
+
+.hero-info .hero-name {
+  margin: 0;
+  line-height: 1.2;
+}
+.hero-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: .95rem;
+  color: #6b7280;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 12px;
+  margin: 8px 0 16px;
+}
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+.stat {
+  padding: 14px;
+  text-align: center;
+}
+.stat-num {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.stat-label {
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Tabs */
+.profile-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 6px 0 14px;
+}
+.profile-tab {
+  border: 1px solid #e5e7eb;
+  background: #f8fafc;
+  padding: .45rem .9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.profile-tab.active {
+  background: #fff;
+  border-color: #d1d5db;
+  box-shadow: 0 1px 0 rgba(0,0,0,.03);
+  font-weight: 600;
+}
+
+/* Utility */
+.card.pad { padding: 16px; }
+
+.user-link:hover { text-decoration: underline; }
+
+.auth-actions .user-link { text-decoration: none; }
+.auth-actions .user-link:hover { text-decoration: underline; }
+
+/* jednostavna "table-like" lista */
+.table-like { width: 100%; }
+.tl-head, .tl-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 140px 120px 120px;
+  gap: 8px;
+  align-items: center;
+}
+.tl-head {
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+.tl-row {
+  padding: 8px 0;
+  border-bottom: 1px dashed #eef2f7;
+  text-decoration: none;
+  color: inherit;
+}
+.tl-row:hover { background: #fafafa; }
+
+.save-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.review-agg { display: flex; align-items: center; gap: 8px; margin: 6px 0 10px; }
+.stars .star, .stars.small .star, .star-btn {
+  font-size: 1.1rem; line-height: 1; color: #d1d5db;
+}
+.stars .full, .star-btn.on { color: #f59e0b; }
+.star-btn {
+  background: none; border: none; cursor: pointer; font-size: 1.3rem; padding: 0 2px;
+}
+.review-form { display: flex; flex-direction: column; gap: 8px; margin: 8px 0 16px; }
+.reviews { display: grid; gap: 8px; padding: 0; list-style: none; }
+

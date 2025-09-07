@@ -13,14 +13,44 @@ export default function AvailabilityWidget({ slug, initialPax = 2, reserveHrefBa
   const y = cursor.getFullYear();
   const m = cursor.getMonth();
 
-  const monthData = useMemo(() => getAvailabilityMonth(slug, y, m), [slug, y, m]);
-  const byDate = useMemo(() => Object.fromEntries(monthData.map(d => [d.date, d])), [monthData]);
+  // --- SIGURNA DOHVATNA FUNKCIJA (nikad ne puca) ---
+  const safeMonth = useMemo(() => {
+    try {
+      const arr = getAvailabilityMonth(slug, y, m);
+      return Array.isArray(arr) ? arr : [];
+    } catch (e) {
+      console.warn("[Availability] getAvailabilityMonth error:", e);
+      return [];
+    }
+  }, [slug, y, m]);
 
-  const basePrice = basePriceProp ?? getBasePrice(slug);
-  const price = useMemo(
-    () => (date ? computePriceCustom(slug, date, pax, basePrice) : null),
-    [slug, date, pax, basePrice]
-  );
+  const byDate = useMemo(() => {
+    try {
+      return Object.fromEntries(safeMonth.map(d => [d.date, d]));
+    } catch {
+      return {};
+    }
+  }, [safeMonth]);
+
+  const basePrice = useMemo(() => {
+    if (typeof basePriceProp === "number") return basePriceProp;
+    try {
+      const v = getBasePrice(slug);
+      return typeof v === "number" ? v : 0;
+    } catch {
+      return 0;
+    }
+  }, [basePriceProp, slug]);
+
+  const price = useMemo(() => {
+    if (!date) return null;
+    try {
+      return computePriceCustom(slug, date, pax, basePrice);
+    } catch (e) {
+      console.warn("[Availability] computePriceCustom error:", e);
+      return null;
+    }
+  }, [slug, date, pax, basePrice]);
 
   function monthName(d){ return d.toLocaleDateString("hr-HR", { month:"long", year:"numeric" }); }
   function ymd(d){ const Y=d.getFullYear(), M=String(d.getMonth()+1).padStart(2,"0"), D=String(d.getDate()).padStart(2,"0"); return `${Y}-${M}-${D}`; }
@@ -28,16 +58,18 @@ export default function AvailabilityWidget({ slug, initialPax = 2, reserveHrefBa
   const first = new Date(y, m, 1);
   const startOffset = (first.getDay()+6)%7; // pon=0
   const daysInMonth = new Date(y, m+1, 0).getDate();
+
   const cells = [];
   for (let i=0;i<startOffset;i++) cells.push({ empty:true, key:`b${i}` });
   for (let d=1; d<=daysInMonth; d++){
     const ds = ymd(new Date(y, m, d));
-    const rec = byDate[ds];
-    cells.push({ key:ds, ...rec });
+    // ⚠️ Default zapis da NIKAD ne bude undefined (inače bi c.date bio undefined i rušio render)
+    const rec = byDate[ds] || { date: ds, available: 0, capacity: 0, blackout: true, season: null };
+    cells.push({ key: ds, ...rec });
   }
 
   const selected = date ? byDate[date] : null;
-  const canBook = selected && selected.available >= pax && !selected.blackout && selected.capacity > 0;
+  const canBook = selected && (selected.available ?? 0) >= pax && !selected.blackout && (selected.capacity ?? 0) > 0;
 
   const reserveHref = canBook
     ? (reserveHrefBase ? `${reserveHrefBase}?date=${date}&pax=${pax}` : `#/rezervacija/ture/${slug}?date=${date}&pax=${pax}`)
@@ -63,13 +95,13 @@ export default function AvailabilityWidget({ slug, initialPax = 2, reserveHrefBa
             className={
               "avw-cell avw-day" +
               (date === c.date ? " avw-selected" : "") +
-              ((c.blackout || c.capacity===0 || c.available===0) ? " avw-disabled" : "")
+              ((c.blackout || (c.capacity ?? 0)===0 || (c.available ?? 0)===0) ? " avw-disabled" : "")
             }
-            disabled={c.blackout || c.capacity===0 || c.available===0}
+            disabled={c.blackout || (c.capacity ?? 0)===0 || (c.available ?? 0)===0}
             onClick={() => setDate(c.date)}
             title={
               c.blackout ? "Nije dostupno" :
-              `${c.available}/${c.capacity} mjesta — sezona: ${c.season?.name}`
+              `${c.available}/${c.capacity} mjesta — sezona: ${c.season?.name ?? "—"}`
             }
           >
             <div className="avw-n">{c.date.slice(-2)}</div>
@@ -82,14 +114,20 @@ export default function AvailabilityWidget({ slug, initialPax = 2, reserveHrefBa
         <div className="avw-row">
           <label>
             Broj osoba
-            <input type="number" min="1" max="10" value={pax} onChange={e => setPax(Math.max(1, Number(e.target.value||1)))} />
+            <input
+              type="number"
+              min="1"
+              max="10"
+              value={pax}
+              onChange={e => setPax(Math.max(1, Number(e.target.value||1)))}
+            />
           </label>
         </div>
         <div className="avw-info">
           <div><strong>Osnovna cijena:</strong> {basePrice} € / osobi</div>
           {price ? (
             <>
-              <div><strong>Sezona:</strong> {price.season.name} (×{price.season.multiplier})</div>
+              <div><strong>Sezona:</strong> {price.season?.name ?? "—"} {price.season?.multiplier ? `(×${price.season.multiplier})` : ""}</div>
               <div><strong>Cijena po osobi:</strong> {price.perPerson} €</div>
               <div><strong>Ukupno ({pax} os.):</strong> {price.subtotal} €</div>
               {selected && <div><strong>Slobodna mjesta:</strong> {selected.available}/{selected.capacity}</div>}

@@ -11,7 +11,8 @@ const Home = () => {
     activeTab === "dest" ? DataService.DESTINACIJE : DataService.TURE;
   const filtered = useMemo(
     () => DataService.applyFilters(data, q),
-    [data, q, activeTab]
+// obrisan activeTab u liniji 15
+    [data, q]
   );
 
   return (

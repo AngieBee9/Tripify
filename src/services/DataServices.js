@@ -56,7 +56,7 @@ const DataService = (() => {
     "Europa",
     "Azija",
     "Afrika",
-    "Sjeverna Amerika",
+    "Srednja Amerika",
     "Južna Amerika",
     "Oceanija",
   ];

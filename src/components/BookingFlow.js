@@ -1,12 +1,19 @@
+// src/components/BookingFlow.jsx
 import { useState } from "react";
 import NotFound from "./NotFound";
 import GlobalTabs from "./GlobalsTabs";
 import DataService from "../services/DataServices";
+import { useAuth } from "../contexts/AuthContext";
+import { createReservation } from "../services/reservations";
 
 const BookingFlow = ({ tip, slug }) => {
+  const { user } = useAuth();
+
   const source = tip === "dest" ? DataService.DESTINACIJE : DataService.TURE;
   const item = source.find((x) => x.slug === slug);
+
   const [step, setStep] = useState(0);
+  const [busy, setBusy] = useState(false);
   const [payload, setPayload] = useState({
     start: "",
     end: "",
@@ -26,6 +33,45 @@ const BookingFlow = ({ tip, slug }) => {
         "/" + (tip === "dest" ? "destinacije" : "ture") + "/" + slug;
   };
 
+  const totalPax = Number(payload.adults || 0) + Number(payload.children || 0);
+  const quotedPrice = Number(item.price || 0) * (totalPax || 1); // naivno: cijena * broj putnika
+
+  async function handleSubmit() {
+    // validacija
+    if (!payload.name?.trim() || !payload.email?.trim()) return;
+    if (!payload.start || !payload.end) return;
+
+    if (!user) {
+      alert("Za slanje upita/rezervacije potrebno je prijaviti se.");
+      window.location.hash = "#/prijava";
+      return;
+    }
+
+    try {
+      setBusy(true);
+
+      await createReservation({
+        user,
+        tip: tip === "dest" ? "dest" : "ture",
+        slug,
+        title: item.naziv || slug,
+        price: quotedPrice,
+        startDate: payload.start,
+        days: Number(item.days || 0),
+        pax: totalPax || 1,
+        status: "pending", // ili "confirmed" kad spojiš naplatu
+      });
+
+      // sve gotovo – vodi na profil → rezervacije
+      window.location.hash = "#/profil?t=rezervacije";
+    } catch (err) {
+      console.error("[Booking] createReservation error:", err);
+      alert("Nažalost, došlo je do pogreške pri slanju. Pokušaj ponovno.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <>
       <GlobalTabs active={tip === "dest" ? "dest" : "ture"} />
@@ -40,17 +86,17 @@ const BookingFlow = ({ tip, slug }) => {
           }}
         >
           <span>
-            <a href="#/">Početna</a> &rsaquo;{" "}
+            <a href="#/">Početna</a> &rsaquo{" "}
             <a href={`#/${tip === "dest" ? "destinacije" : "ture"}`}>
               {tip === "dest" ? "Destinacije" : "Ture"}
             </a>{" "}
-            &rsaquo;{" "}
+            &rsaquo{" "}
             <a href={`#/${tip === "dest" ? "destinacije" : "ture"}/${slug}`}>
               {item.naziv}
             </a>{" "}
             &rsaquo; Rezervacija
           </span>
-          <a className="btn secondary" href="#" onClick={handleBack}>
+          <a className="btn secondary" href="/" onClick={handleBack}>
             ← Natrag
           </a>
         </div>
@@ -156,6 +202,7 @@ const BookingFlow = ({ tip, slug }) => {
                 <button
                   className="btn secondary"
                   onClick={() => setStep(step - 1)}
+                  disabled={busy}
                 >
                   Natrag
                 </button>
@@ -164,7 +211,7 @@ const BookingFlow = ({ tip, slug }) => {
                 <button
                   className="btn"
                   onClick={() => setStep(step + 1)}
-                  disabled={step === 0 && (!payload.start || !payload.end)}
+                  disabled={busy || (step === 0 && (!payload.start || !payload.end))}
                 >
                   Nastavi
                 </button>
@@ -172,21 +219,22 @@ const BookingFlow = ({ tip, slug }) => {
               {step === 2 && (
                 <button
                   className="btn"
-                  onClick={() =>
-                    alert(
-                      "Super! Sljedeći korak bit će Stripe naplata i e-mail potvrda (kad spojimo backend)."
-                    )
+                  onClick={handleSubmit}
+                  disabled={
+                    busy ||
+                    !payload.name?.trim() ||
+                    !payload.email?.trim()
                   }
-                  disabled={!payload.name || !payload.email}
                 >
-                  Pošalji upit
+                  {busy ? "Slanje…" : "Pošalji upit"}
                 </button>
               )}
             </div>
 
             <p className="muted" style={{ marginTop: ".75rem" }}>
               Pregled: {payload.start || "—"} → {payload.end || "—"} •{" "}
-              {payload.adults} odraslih, {payload.children} djece
+              {payload.adults} odraslih, {payload.children} djece • Procijenjena cijena:{" "}
+              {quotedPrice.toLocaleString("hr-HR")} €
             </p>
           </div>
         </div>

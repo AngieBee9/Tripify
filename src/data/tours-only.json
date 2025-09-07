@@ -1,0 +1,221 @@
+{
+  "ande-eko": {
+    "slug": "ande-eko",
+    "naziv": "Tura kroz Ande",
+    "opis": "5 dana s lokalnim vodičem",
+    "opisDug": "Fokus na lokalne zajednice i održive rute kroz Ande uz spore prijelaze i panoramske poglede.",
+    "zanimljivosti": [
+      "Ande su najdulji planinski lanac na svijetu.",
+      "Velike visine zahtijevaju aklimatizaciju.",
+      "Bogata andska kuhinja (quinoa, kukuruz)."
+    ],
+    "slika": "https://media.istockphoto.com/id/1127785895/photo/the-yeso-reservoir.jpg?s=612x612&w=0&k=20&c=iLa63FylmhkCq_Gpi7MDvV14p54nywYE5p8bPR-swmQ=",
+    "price": 920,
+    "days": 5,
+    "kontinent": "Južna Amerika",
+    "tags": ["Planine", "Lokalno"],
+    "includes": ["Smještaj 4 noći", "Doručak", "Vodič"],
+    "itinerary": [{ "day": 1, "title": "Santiago", "text": "Upoznavanje grupe." }],
+    "gallery": [
+      "https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1542144582-1ba00456b5aa?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Andes"
+  },
+  "tanzanija-safari": {
+    "slug": "tanzanija-safari",
+    "naziv": "Safari u Tanzaniji",
+    "opis": "Očuvanje divljih životinja",
+    "opisDug": "Kroz Serengeti i Ngorongoro s certificiranim vodičima. Naglasak na promatranju bez uznemiravanja životinja.",
+    "zanimljivosti": [
+      "Velika migracija gnuova.",
+      "Zaštićena područja i rangeri.",
+      "Etički kodeks promatranja faune."
+    ],
+    "slika": "https://www.integral-zagreb.hr/sites/default/files/styles/1920_auto_/public/uploads/products/gallery/2024-06/tanzanija-safari-3.jpg?itok=-tvcmYJN",
+    "price": 1680,
+    "days": 7,
+    "kontinent": "Afrika",
+    "tags": ["Safari", "Divljina"],
+    "includes": ["Jeep tura", "Vodič", "Kamp"],
+    "itinerary": [{ "day": 2, "title": "Serengeti", "text": "Safari u parku." }],
+    "gallery": [
+      "https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1516117172878-fd2c41f4a759?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Serengeti"
+  },
+  "norveska-kajak": {
+    "slug": "norveska-kajak",
+    "naziv": "Kajakom kroz Norvešku",
+    "opis": "Tiho istraživanje fjordova",
+    "opisDug": "Fjordovi, vodopadi i tihi zaljevi – idealno za ljubitelje prirode i fotografije.",
+    "zanimljivosti": [
+      "Norveški fjordovi su ledenjačkog podrijetla.",
+      "Puffini i tuljani ponekad uočljivi.",
+      "Noćno svjetlo ljeti traje dugo."
+    ],
+    "slika": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5lWpzwNTaLFXQl7mZdcmHF0tQFJ7JuGhaPg&s",
+    "price": 790,
+    "days": 4,
+    "kontinent": "Europa",
+    "tags": ["Voda", "Tišina"],
+    "includes": ["Kajak oprema", "Vodič"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1440342359743-84fcb8c21f21?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Norway fjords"
+  },
+  "kapadokija-baloni": {
+    "slug": "kapadokija-baloni",
+    "naziv": "Baloni u Kapadokiji",
+    "opis": "Let iznad bajkovitih stijena",
+    "opisDug": "Jedinstven pejzaž vulkanskih formacija, jutarnji let balonom i posjet podzemnim gradovima.",
+    "zanimljivosti": [
+      "Zore su najstabilnije za let.",
+      "'Vilinske dimnjake' oblikovala je erozija.",
+      "Derinkuyu – višekatni podzemni grad."
+    ],
+    "slika": "https://th.bing.com/th/id/R.636af8f54a7064ca5bf4fda65db1dcf0?rik=h54Z0SKn8YC8tg&riu=http%3a%2f%2ffotozine.org%2ffotka.php%3fm%3dg%26p%3d4459%2f01-20221207_075741--3_ok_1200___290.jpg&ehk=StmUGW4Ss6dYWPudElL%2b8hnvUTnNkryrQDG8mfjtW7U%3d&risl=&pid=ImgRaw&r=0",
+    "price": 350,
+    "days": 2,
+    "kontinent": "Azija",
+    "tags": ["Panorama", "Baloni"],
+    "includes": ["Let balonom", "Doručak"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1544739313-61605251e8c5?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1544739313-6f32d0a480d4?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Cappadocia"
+  },
+  "island-hiking": {
+    "slug": "island-hiking",
+    "naziv": "Pješačenje Islandom",
+    "opis": "Vodopadi i geotermalna čuda",
+    "opisDug": "Kombinacija slapova, lavinih polja i prirodnih kupališta, uz siguran plan kretanja.",
+    "zanimljivosti": [
+      "Vatnajökull – najveći europski ledenjak.",
+      "Kerlingarfjöll geotermalni krajolici.",
+      "Jaka sigurnosna kultura planinarenja."
+    ],
+    "slika": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+    "price": 1120,
+    "days": 6,
+    "kontinent": "Europa",
+    "tags": ["Hiking"],
+    "includes": ["Plan puta", "Smještaj"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Iceland waterfalls"
+  },
+  "galapagos-brod": {
+    "slug": "galapagos-brod",
+    "naziv": "Plovidba Galapagosom",
+    "opis": "Susret s jedinstvenim vrstama",
+    "opisDug": "Otočje koje je nadahnulo Darwina – strogi propisi čuvaju jedinstveni ekosustav.",
+    "zanimljivosti": [
+      "Morske iguane i divovske kornjače.",
+      "Ograničen broj posjetitelja po otoku.",
+      "Vodiči s licencom Nacionalnog parka."
+    ],
+    "slika": "https://img.rtvslo.si/_up/upload/2010/04/22/64684313_galapagos-20tortoises_slideshow_604x500.jpg",
+    "price": 2450,
+    "days": 8,
+    "kontinent": "Južna Amerika",
+    "tags": ["Brod", "Fauna"],
+    "includes": ["Kabina", "Vodič prirodoslovac"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1525151498231-bc059cfafa1b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1519692933481-e162a57d6721?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Galapagos"
+  },
+  "namibija-kamp": {
+    "slug": "namibija-kamp",
+    "naziv": "Kampiranje u Namibiji",
+    "opis": "Zvjezdano nebo i crvene dine",
+    "opisDug": "Pustinjski pejzaži, tihi kampovi i izvanredna noćna nebesa bez svjetlosnog zagađenja.",
+    "zanimljivosti": [
+      "Deadvlei – bijele glinene plohe i crna stabla.",
+      "Dine Sossusvlei među najvišima.",
+      "Astrofotografija je fantastična."
+    ],
+    "slika": "https://www.thisiscolossal.com/wp-content/uploads/2018/10/Namibia-20161017-CF002835-0110.jpg",
+    "price": 890,
+    "days": 5,
+    "kontinent": "Afrika",
+    "tags": ["Pustinja", "Zvjezdano nebo"],
+    "includes": ["Šator", "Kamp oprema"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Namibia dunes"
+  },
+  "japan-kultura": {
+    "slug": "japan-kultura",
+    "naziv": "Kultura u Japanu",
+    "opis": "Tradicionalni hramovi i čajna ceremonija",
+    "opisDug": "Susret drevnog i ultramodernog: hramovi, čajne kuće i uredna urbana logistika.",
+    "zanimljivosti": [
+      "Kyoto – tisuće hramova i svetišta.",
+      "Shinkansen – brzi vlakovi točni u minutu.",
+      "Etiquette: tišina u javnom prijevozu."
+    ],
+    "slika": "https://tse2.mm.bing.net/th/id/OIP.rhaZphFVC73nM7D_Cil7iwHaE7?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "price": 1390,
+    "days": 7,
+    "kontinent": "Azija",
+    "tags": ["Kultura", "Gradovi"],
+    "includes": ["Vodič", "Ulaznice"],
+    "itinerary": [],
+    "gallery": [
+      "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1505062581433-5f02c3ce9f0b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1505060498473-4bda4baf1b5d?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "mapQuery": "Kyoto"
+  },
+  "petra-wadi": {
+    "slug": "petra-wadi",
+    "naziv": "Petra i Wadi Rum",
+    "opis": "Pustinja i drevni grad",
+    "opisDug": "Spoj nabatejskog grada Petre i crvenih pustinjskih dolina Wadi Ruma, uz noćenje u beduinskom kampu.",
+    "zanimljivosti": [
+      "Ulaz u Petru vodi kroz uski kanjon Siq.",
+      "'Treasury' (Al-Khazneh) isklesan je u stijeni.",
+      "Wadi Rum – lokacija brojnih filmova (Marsovac)."
+    ],
+    "slika": "https://i0.wp.com/www.touristjordan.com/wp-content/uploads/2022/05/shutterstock_386921647-scaled.jpg?fit=800%2C533&ssl=1",
+    "price": 640,
+    "days": 3,
+    "kontinent": "Azija",
+    "tags": ["Pustinja", "Povijest", "Popularno"],
+    "includes": ["Džip tura Wadi Ruma", "Ulaznica za Petru", "Jedna noć u beduinskom kampu"],
+    "itinerary": [
+      { "day": 1, "title": "Wadi Rum", "text": "Džip safari, zalazak sunca, beduinska večera." },
+      { "day": 2, "title": "Petra", "text": "The Siq, Treasury, Monastery." }
+    ],
+    "gallery": [
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=70",
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=70",
+      "https://images.unsplash.com/photo-1602748323197-5a8d2fb504a3?auto=format&fit=crop&w=1200&q=70"
+    ],
+    "mapQuery": "Petra Jordan"
+  }
+}
