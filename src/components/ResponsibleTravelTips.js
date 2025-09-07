@@ -2,8 +2,7 @@ import React from "react";
 
 export default function ResponsibleTravelTips() {
   return (
-    <div className="container" style={{ maxWidth: 900, margin: "40px auto", padding: "0 16px" }}>
-      <h1>Savjeti za odgovorno putovanje</h1>
+  <div className="container" style={{ maxWidth: 900, margin: "0 auto", padding: "var(--header-h) 16px 0" }}>      <h1>Savjeti za odgovorno putovanje</h1>
       <p style={{ color: "var(--muted)" }}>
         Mali izbor praktičnih koraka kako putovati pažljivije – prema ljudima, prirodi i vlastitom budžetu.
       </p>

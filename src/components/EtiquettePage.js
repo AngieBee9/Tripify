@@ -39,8 +39,7 @@ export default function EtiquettePage() {
   const active = PRESETS.find((p) => p.key === country);
 
   return (
-    <div className="container" style={{ maxWidth: 900, margin: "40px auto", padding: "0 16px" }}>
-      <h1>Lokalni običaji & etiketa</h1>
+  <div className="container" style={{ maxWidth: 900, margin: "0 auto", padding: "var(--header-h) 16px 0" }}>      <h1>Lokalni običaji & etiketa</h1>
       <p style={{ color: "var(--muted)" }}>
         Kratki bonton po destinacijama. Odaberi zemlju za brze savjete.
       </p>
